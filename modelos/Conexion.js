@@ -6,6 +6,8 @@ var mysql = require('mysql'),
         host:'131.161.52.171',
         user:'local',
         password:'l0c4lpass',
-        database:'Buses'
+        database:'Buses',
+        dateStrings:'date'
     })
 module.exports=pool;
+//renombrando archivo

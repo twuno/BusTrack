@@ -3,12 +3,13 @@
  */
 var pool = require('./Conexion');
 var userModel = {};
+
 userModel.getUser = function(user,pass,callback){
-    pool.getconnection(function (err, connection) {
+    pool.getConnection(function (err, connection) {
         if(connection){
-            query = 'Select * from Usuarios where usuario=' + connection.escape(user) + 'and clave =' + connection.escape(pass);
+            query = 'Select usuario,FK_RolId Rol, fechaCaducidad Caducado from Usuarios where usuario=' + connection.escape(user) + 'and pass ="' + (pass)+'";';
             connection.query(query,function(error,row){
-               if(erro){
+               if(error){
                    callback(error,null);
 
                }else{

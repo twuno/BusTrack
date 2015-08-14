@@ -9,7 +9,7 @@ exports.createToken = function(data) {
     var payload = {
         iat: moment().unix(),
         exp: moment().add(12, "hours").unix(),
-        emp:data.FK_EmpresasId,
+        emp:data.Rol,
         sub: data.Usuario,
     };
     return jwt.encode(payload, config.TOKEN_SECRET);
