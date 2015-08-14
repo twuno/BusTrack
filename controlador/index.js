@@ -6,4 +6,6 @@ exports.index = function(req, res, next)
 {
   //console.log('index');
   res.render('index', { title: 'Control de Buses' });
+
+
 }
