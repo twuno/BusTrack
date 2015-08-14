@@ -1,0 +1,87 @@
+//
+   Created by Walter Suazo on 04/08/2015.
+
+doctype html
+head
+   meta(name='viewport' content="width=device-width, initial-scale=1.0")
+   block title
+   //::::::::::::::::::::::::JQuery::::::::::::::::::::::::
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+   //::::::::::::::::::::::::Bootstrap::::::::::::::::::::::::
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   //script(src='javascripts/dropdown.js')
+   //(script(src='javascripts/Modal/modal.js')
+   //:::::::::::::::::::::Awesome font::::::::::::::::::::::
+   link(rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css")
+   //::::::::::::::::::::::::Angular::::::::::::::::::::::::
+   script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js")
+   //::::::::::::::::::::::::Archivos de OpenLayer::::::::::::::::::::::::
+   link(rel='stylesheet', href='/stylesheets/ol.css')
+   link(rel='stylesheet', href='/stylesheets/main.css')
+   script(src='javascripts/ol.js')
+   //::::::::::::::::::::::::Archivo de configuracion del mapa::::::::::::::::::::::::
+   script(src='javascripts/MapaConfig.js')
+   script(src='javascripts/Geocercas/Geocercas.js')
+   script(src='javascripts/Referencias/Referencias.js')
+   script(src='javascripts/Referencias/CrudReferencias.js')
+   script(src='ControllerAngularJs/GeocercaController.js')
+   //::::::::::::::::::::::::Icon-Select-Plugin:::::::::::::::::::::::::::::::::::::::
+   script(src='javascripts/icon-select-plugin/iconselect.js')
+   script(src='javascripts/icon-select-plugin/iscroll.js')
+   link(rel="stylesheet" href='stylesheets/iconselect.css')
+   block CSS
+   block JS
+   script.
+      function toggleBarraVertical() {
+         if ($('#BarraVertical').is(':hidden')) {
+            $("#ContenedorMapa").removeClass("col-md-12").addClass("col-md-9");
+            $('#BarraVertical').show(800);
+            $("#MostrarBarraVertical a").text("<");
+         }
+         else {
+            $('#BarraVertical').hide(800, function () {
+               $("#ContenedorMapa").removeClass("col-md-9").addClass("col-md-12");
+               $("#MostrarBarraVertical a").text(">");
+            });
+         }
+      }
+      function BarraVerticalMostrar() {
+         if ($('#BarraVertical').is(':hidden')) {
+            $("#ContenedorMapa").removeClass("col-md-12").addClass("col-md-9");
+            $('#BarraVertical').show(800, function () {
+               $("#MostrarBarraVertical a").text("<");
+            });
+         }
+      }
+      //:::::::::::::::::::::todas las funciones que se ejecutar cuando la aplicacion termine de cargar:::::::::::::::::::::::
+      $(function () {
+         $("#tabs").tabs();
+         $(document).mousemove(function (event) {
+            posX = event.pageX;
+            posY = event.pageY;
+            if (posY > 110 && posX < 2) {
+               BarraVerticalMostrar();
+            }
+         });
+         altoPantalla = $(window).height() * 0.89;
+         $("#mapa").height(altoPantalla);
+         cargarReferenceIcon();
+      });
+html(ng-app="Sabueso")
+   body(scroll="no")
+      div(id="tabs" style="height:100%; margin:0px; padding:0px;")
+         ul
+            li
+               a(href="#tabs-1") Home
+            li
+               a(href="#tabs-2" onclick="cargarMapa()") Localizacion
+            li
+               button.btn.btn-primary(style="") btn1
+         div(id="tabs-1")
+            block pizarron
+         div(id="tabs-2" style="padding:0px;")
+            block Localizacion
