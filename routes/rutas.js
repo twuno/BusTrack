@@ -5,7 +5,6 @@
 exports=module.exports=function(app){
     app.get('/',require('../controlador/index').index);
     app.get('/usuarios',require('../controlador/users').getUsers);
-    app.post('/login',require('../controlador/login').init);
-    app.get('/Rastreo',require('../controlador/render').rastreo);
+    app.post('/login',require('../controlador/login').init)
 
 }
