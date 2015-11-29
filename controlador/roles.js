@@ -28,8 +28,9 @@ exports.crear=function(req,res)
 
 
   rolesM.post(data,function(err,val){
-    if(error)
+    if(err)
     {
+      console.log(err);
       res.sendStatus(500);
     }else{
       res.sendStatus(200);
@@ -46,12 +47,13 @@ exports.actualizar=function(req,res)
   }
   id = req.body.id;
 
-  if (data.length=0){
+  if (data.length<1){
     res.sendStatus(200);
   }else
   {
     rolesM.update(id,data,function(err,data){
       if(err){
+        console.log(err);
         res.sendStatus(500);
       }else
       {

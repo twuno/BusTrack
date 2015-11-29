@@ -45,11 +45,11 @@ rolesModel.post=function(data,callback)
   });
 }
 
-roles.update=function(id,data,callback)
+rolesModel.update=function(id,data,callback)
 {
   pool.getConnection(function(err,connection){
     if(connection){
-      query="update Roles set ? where PK_UsuarioId="+id;
+      query="update Roles set ? where PK_RolId="+id;
       connection.query(query,data,function(error,row)
       {
         if(error){

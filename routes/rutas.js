@@ -29,7 +29,8 @@ exports=module.exports=function(app){
     {
       app.get('/roles',require('../controlador/roles').get);
       app.post('/roles',require('../controlador/roles').crear);
-      app.put('/roles',require('../controlador/roles').actualizar)
+      app.put('/roles',require('../controlador/roles').actualizar);
+      app.delete('/roles',require('../controlador/roles').delete);
     }
 }
 
