@@ -9,15 +9,96 @@ userModel.getUser = function(user,pass,callback){
         if(connection){
             query = 'Select usuario,FK_RolId Rol, fechaCaducidad Caducado from Usuarios where usuario=' + connection.escape(user) + 'and pass ="' + (pass)+'";';
             connection.query(query,function(error,row){
+            connection.release();
                if(error){
                    callback(error,null);
 
                }else{
                    callback(null,row);
                }
-                connection.release();
+
             });
         }
     });
 }
+
+userModel.getAll = function(callback){
+    pool.getConnection(function (err, connection) {
+        if(connection){
+            query = 'Select PK_UsuarioId,usuario,FK_RolId Rol, fechaCaducidad Caducado from Usuarios;';
+            connection.query(query,function(error,row){
+                connection.release();
+                if(error){
+                    callback(error,null);
+                }else{
+                    callback(null,row);
+                }
+
+            });
+        }
+    });
+}
+
+
+userModel.crear = function(data,callback)
+{
+    pool.getConnection(function (err,conn) {
+        if(conn){
+            query = "insert into Usuarios set ?"
+            conn.query(query,data,function(error,row){
+            conn.release();
+                if(error){
+                    console.log(error);
+                    callback(error,null);
+                }else{
+                    callback(null,row);
+                }
+            })
+        }
+    })
+}
+
+
+userModel.update=function(user,data,callback)
+{
+
+    pool.getConnection(function(err,conn){
+
+        if(conn)
+        {
+        query="update Usuarios set ? where PK_UsuarioId="+user;
+        console.log(conn.format(query,data))
+
+        conn.query(query,data,function(error,row){
+            if(error)
+            {
+                callback(error,null);
+            }else
+            {
+                callback(null,row);
+            }
+        });
+
+        }
+    });
+}
+
+userModel.borrar=function(user,callback)
+{
+  pool.getConnection(function(error,conn){
+  if(conn)
+  {
+    conn.query("delete from Usuarios where PK_UsuarioId="+user,function(err,row){
+      if(err) {
+        callback(err,null);
+      }else
+      {
+        callback(null,row);
+      }
+    });
+
+  }
+});
+}
+
 module.exports= userModel;

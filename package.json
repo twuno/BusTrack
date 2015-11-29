@@ -17,6 +17,8 @@
     "cors":"",
     "jwt-simple":"",
     "moment":"",
-    "mysql":""
+    "mysql":"",
+    "express-validation":"0.4.5",
+    "joi":""
   }
 }

@@ -7,7 +7,19 @@ var mysql = require('mysql'),
         user:'local',
         password:'l0c4lpass',
         database:'Buses',
+        dateStrings:'date',
+        connectionLimit:100
+    })
+module.exports=pool;
+/*
+var mysql = require('mysql'),
+    pool = mysql.createPool({
+        host:'honduras.ca6zya7z3wxn.us-west-2.rds.amazonaws.com',
+        user:'Master',
+        password:'H0ndu.gps!',
+        database:'Buses',
         dateStrings:'date'
     })
 module.exports=pool;
+*/
 //renombrando archivo
