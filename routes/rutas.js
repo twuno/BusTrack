@@ -35,6 +35,10 @@ exports=module.exports=function(app){
   //::::::Buses:::::::::
   {
   app.get('/buses',require('../controlador/buses').get);
+  app.post('/buses',require('../controlador/buses').post);
+  app.put('/buses',require('../controlador/buses').update);
+  app.delete('/buses',require('../controlador/buses').delete);
+
   }
 }
 

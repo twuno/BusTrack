@@ -1,6 +1,6 @@
 /**
  * Created by Walter Suazo on 12/08/2015.
- */
+
 var mysql = require('mysql'),
     pool = mysql.createPool({
         host:'131.161.52.171',
@@ -23,3 +23,14 @@ var mysql = require('mysql'),
 module.exports=pool;
 */
 //renombrando archivo
+
+var mysql = require('mysql'),
+  pool = mysql.createPool({
+    host:'127.0.0.1',
+    user:'root',
+    password:'probit2013',
+    database:'Bustrack',
+    dateStrings:'date',
+    connectionLimit:100
+  })
+module.exports=pool;
