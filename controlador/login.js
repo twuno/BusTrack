@@ -9,26 +9,23 @@ var userM = require('../modelos/Login')
 
 exports.init=function(req,res,next)
 {
-
     var user = req.body.username;
-    var pass= servicio.encriptar(req.body.password)
 
+    var pass= servicio.encriptar(req.body.password)
     userM.getUser(user,pass,function(error,data){
         if(error){
-
-            res.render('index');
+            console.log(error);
+            res.sendStatus(500);
         }else{
             if (data.length>0){
                 tokencito = servicio.createToken(data[0]);
-                res.render('main', { title: 'BusTrack',token:JSON.stringify(tokencito)  } );
+                res.send({ title: 'BusTrack',token:tokencito});
             }else
             {
-                res.render('index');
+                console.log(data);
+                res.sendStatus(403);
             }
-
         }
-
-
     });
 
 
