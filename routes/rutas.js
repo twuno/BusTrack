@@ -5,57 +5,68 @@ var middleware= require('../servicios/middelware');
 var validate, Joi;
 validate = require('express-validation');
 Joi = require('joi');
+validation = require('./Validations');
 
 exports=module.exports=function(app){
-    app.get('/',require('../controlador/index').index);
 
-    app.post('/login',require('../controlador/login').init)
+    //::::::::login:::::::::::::
+    {
+      app.get('/', require('../controlador/index').index);
 
+
+      app.post('/login',validate(validation.login), require('../controlador/login').init)
+    }
 
     //:::::usuarios:::::
     {
         app.get('/usuarios',middleware.ensureAuthenticated,require('../controlador/users').getUsers);
-        app.post('/usuarios',middleware.ensureAuthenticated,validate({body:{
-                usuario:Joi.string().email().required(),
-                clave:Joi.string().regex(/[a-zA-Z0-9]{3,30}/).required(),
-                rol:Joi.number().positive()
-            }
-            }),require('../controlador/users').crear);
-        app.put('/usuarios',middleware.ensureAuthenticated,validate({body:{ id:Joi.number().positive().required()}}),require('../controlador/users').actualizar);
-        app.delete('/usuarios',validate({body:{ id:Joi.number().positive().required()}}),require('../controlador/users').borrar);
+        app.post('/usuarios',middleware.ensureAuthenticated,validate(validation.usuarios.post),require('../controlador/users').crear);
+        app.put('/usuarios',middleware.ensureAuthenticated,validate(validation.usuarios.put),require('../controlador/users').actualizar);
+        app.delete('/usuarios',middleware.ensureAuthenticated,validate(validation.usuarios.delete),require('../controlador/users').borrar);
 
     }
+
     //::::::Roles:::::::::::
     {
       app.get('/roles',require('../controlador/roles').get);
       app.post('/roles',require('../controlador/roles').crear);
-      app.put('/roles',validate({body:{ id:Joi.number().positive().required()}}),require('../controlador/roles').actualizar);
+      app.put('/roles',validate(validation.roles),require('../controlador/roles').actualizar);
       app.delete('/roles',require('../controlador/roles').delete);
     }
-  //::::::Buses:::::::::
+
+    //::::::Buses:::::::::
+    {
+    app.get('/buses',middleware.ensureAuthenticated,require('../controlador/buses').get);
+    app.post('/buses',middleware.ensureAuthenticated,validate(validation.buses.post),require('../controlador/buses').post);
+    app.put('/buses',middleware.ensureAuthenticated,validate(validation.buses.put),require('../controlador/buses').update);
+    app.delete('/buses',middleware.ensureAuthenticated,validate(validation.buses.delete),require('../controlador/buses').delete);
+
+    }
+
+    //::::::Rutas:::::::::
+    {
+      app.get('/rutas',middleware.ensureAuthenticated,require('../controlador/rutas').get);
+      app.post('/rutas',middleware.ensureAuthenticated,validate(validation.rutas.post),require('../controlador/rutas').post);
+      app.put('/rutas',middleware.ensureAuthenticated,validate(validation.rutas.put),require('../controlador/rutas').update);
+      app.delete('/rutas',middleware.ensureAuthenticated,validate(validation.rutas.delete),require('../controlador/rutas').delete);
+    }
+
+    //::::::::horarios::::::::::::
   {
-  app.get('/buses',require('../controlador/buses').get);
-  app.post('/buses',require('../controlador/buses').post);
-  app.put('/buses',require('../controlador/buses').update);
-  app.delete('/buses',require('../controlador/buses').delete);
+    app.get('/horarios',middleware.ensureAuthenticated,require('../controlador/horarios').get);
+    app.post('/horarios',middleware.ensureAuthenticated,validate(validation.horarios.post),require('../controlador/horarios').post);
+    app.put('/horarios',middleware.ensureAuthenticated,validate(validation.horarios.put),require('../controlador/horarios').update);
+    app.delete('/horarios',middleware.ensureAuthenticated,validate(validation.horarios.delete),require('../controlador/horarios').delete);
+
+
+  }
+
+  //:::::::::geocercas::::::::::::::
+  {
+    app.get('/geocercas',middleware.ensureAuthenticated,require('../controlador/geocercas').get);
+    app.post('/geocercas',middleware.ensureAuthenticated,validate(validation.geocercas.post),require('../controlador/geocercas').post);
 
   }
 }
 
 
-/*{"system_time":
-    "2015-11-30T11:08:47.089250-06:00",
-        "code": 99,
-    "vid": 86,
-    "event_time": "2015-11-30T11:00:28-06:00",
-    "event_type": 12,
-    "ip": "201.190.46.108",
-    "metric": 0,
-    "lon": -8801264,
-    "head": 35,
-    "mph": 21, "port": 27974, "source": 3,
-    "valid_position": true, "id": 4323065729, "lat": 1554596, "age": 2, "pid": 94, "device_id": 356612026179319}
-
-
-{"head":269,"code": 0,"event_type": 11,"event_time":"2015-11-28T10:59:32-06:00","ip":"201.190.46.64","age": 2,"lon": -8800523,"system_time":"2015-11-28T10:59:33.470447-06:00","mph": 0,"io_ign": true,"id": 4323164245,"source": 3,"valid_position": true,"lat": 1550278,"port": 1989,"device_id": 356612026179319}
-*/

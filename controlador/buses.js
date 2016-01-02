@@ -21,7 +21,7 @@ exports.get=function(req,res)
 }
 exports.post=function(req,res){
   var  Descripcion = req.body.descripcion;
-  var Device = req.body.device;
+  var  Device = req.body.device;
   data =
   {
     Descripcion:Descripcion,
@@ -43,17 +43,17 @@ exports.update = function(req,res)
 {
   var id = req.body.id;
   var data = {}
-  if(!req.body.descripcion){}else
+  if(typeof req.body.descripcion ==="undefined"){}else
   {
     data['Descripcion']=req.body.descripcion;
   }
-  if(!req.body.device){}else
+  if(typeof req.body.device ==="undefined"){}else
   {
     data['Device']=req.body.descripcion;
   }
-  if (data.length<1)
+  if (Object.keys(data).length<1)
   {
-    res.sendStatus(200);
+    res.sendStatus(400);
   }else
   {
     busesM.update(id,data,function(err,data)
