@@ -1,6 +1,6 @@
 /**
  * Created by Walter Suazo on 12/08/2015.
-
+*/
 var mysql = require('mysql'),
     pool = mysql.createPool({
         host:'131.161.52.171',
@@ -21,9 +21,9 @@ var mysql = require('mysql'),
         dateStrings:'date'
     })
 module.exports=pool;
-*/
-//renombrando archivo
 
+//renombrando archivo
+/*
 var mysql = require('mysql'),
   pool = mysql.createPool({
     host:'127.0.0.1',
@@ -33,4 +33,6 @@ var mysql = require('mysql'),
     dateStrings:'date',
     connectionLimit:100
   })
+
 module.exports=pool;
+ */
