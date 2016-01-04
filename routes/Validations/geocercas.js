@@ -20,8 +20,11 @@ module.exports.put=
   options: { allowUnknownBody: false,flatten : true },
   body: {
     id:Joi.number().positive().required(),
-    inicio: Joi.string().regex(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/).optional(),
-    fin: Joi.string().regex(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/ ).optional()
+    nombre: Joi.string().optional(),
+    puntos: Joi.object().keys({
+      type:Joi.string(),
+      coordinates:Joi.array().items(Joi.array().items(Joi.array().items(Joi.number()).length(2)))
+    }).optional()
 
   }
 }

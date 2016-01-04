@@ -44,15 +44,15 @@ exports.update = function(req,res)
 {
   var id = req.body.id;
   var data = {}
-  if(!req.body.descripcion){}else
+  if(typeof req.body.nombre ==="undefined"){}else
   {
-    data['Descripcion']=req.body.descripcion;
+    data['Nombre']=req.body.nombre;
   }
-  if(!req.body.device){}else
+  if(typeof req.body.puntos==="undefined"){}else
   {
-    data['Device']=req.body.descripcion;
+    data['Puntos']=req.body.puntos;
   }
-  if (data.length<1)
+  if (Object.keys(data).length<1)
   {
     res.sendStatus(200);
   }else
@@ -75,11 +75,11 @@ exports.delete = function(req,res)
 
   geocercasM.delete(id,function(err,data){
     if(err){
-
-      req.sendStatus(500);
+      console.log(err)
+      res.sendStatus(500);
     }else
     {
-      req.sendStatus(200);
+      res.sendStatus(200);
     }
   });
 }
