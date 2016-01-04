@@ -9,3 +9,4 @@ exports.rutas= require('./rutas');
 exports.buses= require('./buses');
 exports.horarios= require('./horarios');
 exports.geocercas= require('./geocercas');
+exports.viajes=require('./viajes');

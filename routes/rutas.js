@@ -57,16 +57,24 @@ exports=module.exports=function(app){
     app.post('/horarios',middleware.ensureAuthenticated,validate(validation.horarios.post),require('../controlador/horarios').post);
     app.put('/horarios',middleware.ensureAuthenticated,validate(validation.horarios.put),require('../controlador/horarios').update);
     app.delete('/horarios',middleware.ensureAuthenticated,validate(validation.horarios.delete),require('../controlador/horarios').delete);
+  }
 
-
+    //::::::::viajes::::::::::::
+  {
+    app.get('/viajes',middleware.ensureAuthenticated,require('../controlador/viajes').get);
+    app.post('/viajes',middleware.ensureAuthenticated,validate(validation.viajes.post),require('../controlador/viajes').post);
+    app.put('/viajes',middleware.ensureAuthenticated,validate(validation.viajes.put),require('../controlador/viajes').update);
+    app.delete('/viajes',middleware.ensureAuthenticated,validate(validation.viajes.delete),require('../controlador/viajes').delete);
   }
 
   //:::::::::geocercas::::::::::::::
   {
     app.get('/geocercas',middleware.ensureAuthenticated,require('../controlador/geocercas').get);
     app.post('/geocercas',middleware.ensureAuthenticated,validate(validation.geocercas.post),require('../controlador/geocercas').post);
-
+    app.put('/geocercas',middleware.ensureAuthenticated,validate(validation.geocercas.put),require('../controlador/geocercas').update);
+    app.delete('/geocercas',middleware.ensureAuthenticated,validate(validation.geocercas.delete),require('../controlador/geocercas').delete);
   }
+
 }
 
 
