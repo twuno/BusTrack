@@ -9,7 +9,7 @@ rolesModel.get=function(callback)
 {
   pool.getConnection(function (err, connection) {
     if(connection){
-      query = 'select * from Roles';
+      query = 'select PK_RolId rol_id,Descripcion rol from Roles';
       connection.query(query,function(error,row){
         connection.release();
         if(error){
