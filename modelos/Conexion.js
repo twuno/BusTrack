@@ -1,7 +1,11 @@
 /**
  * Created by Walter Suazo on 12/08/2015.
 */
+
+
+
 var mysql = require('mysql'),
+
     pool = mysql.createPool({
         host:'131.161.52.171',
         user:'local',
@@ -11,6 +15,9 @@ var mysql = require('mysql'),
         connectionLimit:100
     })
 module.exports=pool;
+
+
+
 /*
 var mysql = require('mysql'),
     pool = mysql.createPool({
