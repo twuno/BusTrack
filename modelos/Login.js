@@ -7,7 +7,7 @@ var userModel = {};
 userModel.getUser = function(user,pass,callback){
     pool.getConnection(function (err, connection) {
         if(connection){
-            query = 'Select usuario,FK_RolId Rol, fechaCaducidad Caducado from Usuarios where usuario=' + connection.escape(user) + 'and pass ="' + (pass)+'";';
+            query = 'Select PK_UsuarioId id,usuario,FK_RolId Rol, fechaCaducidad Caducado from Usuarios where usuario=' + connection.escape(user) + 'and pass ="' + (pass)+'";';
             connection.query(query,function(error,row){
             connection.release();
                if(error){
@@ -25,7 +25,9 @@ userModel.getUser = function(user,pass,callback){
 userModel.getAll = function(callback){
     pool.getConnection(function (err, connection) {
         if(connection){
-            query = 'Select PK_UsuarioId,usuario,FK_RolId Rol, fechaCaducidad Caducado from Usuarios;';
+            query = 'Select PK_UsuarioId Id,usuario Usuario,r.Descripcion Rol,r.PK_RolId rol_id, fechaCaducidad Caducado,Activo from Usuarios u '+
+          ' INNER JOIN Roles r on u.FK_RolId = r.PK_RolId;';
+
             connection.query(query,function(error,row){
                 connection.release();
                 if(error){
