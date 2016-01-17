@@ -10,3 +10,7 @@ exports.buses= require('./buses');
 exports.horarios= require('./horarios');
 exports.geocercas= require('./geocercas');
 exports.viajes=require('./viajes');
+exports.geoRutas=require('./geoRutas');
+exports.representates=require('./representante');
+exports.alumnos=require('./alumnos');
+exports.asignaciones=require('./asignaciones');
