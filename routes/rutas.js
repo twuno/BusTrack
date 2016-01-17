@@ -17,6 +17,25 @@ exports=module.exports=function(app){
       app.post('/login',validate(validation.login), require('../controlador/login').init)
     }
 
+
+    //:::::::::Alumnos:::::::::::
+  {
+    app.get('/alumnos',middleware.ensureAuthenticated,require('../controlador/alumnos').get);
+    app.post('/alumnos',middleware.ensureAuthenticated,validate(validation.alumnos.post),require('../controlador/alumnos').post);
+    app.put('/alumnos',middleware.ensureAuthenticated,validate(validation.alumnos.put),require('../controlador/alumnos').update);
+    app.delete('/alumnos',middleware.ensureAuthenticated,validate(validation.alumnos.delete),require('../controlador/alumnos').delete);
+
+  }
+
+  //:::::::::Representante:::::::::::
+  {
+    app.get('/representantes',middleware.ensureAuthenticated,require('../controlador/representante').get);
+    app.post('/representantes',middleware.ensureAuthenticated,validate(validation.representates.post),require('../controlador/representante').post);
+    app.put('/representantes',middleware.ensureAuthenticated,validate(validation.representates.put),require('../controlador/representante').update);
+    app.delete('/representantes',middleware.ensureAuthenticated,validate(validation.representates.delete),require('../controlador/representante').delete);
+
+  }
+
     //:::::usuarios:::::
     {
         app.get('/usuarios',middleware.ensureAuthenticated,require('../controlador/users').getUsers);
@@ -73,6 +92,28 @@ exports=module.exports=function(app){
     app.post('/geocercas',middleware.ensureAuthenticated,validate(validation.geocercas.post),require('../controlador/geocercas').post);
     app.put('/geocercas',middleware.ensureAuthenticated,validate(validation.geocercas.put),require('../controlador/geocercas').update);
     app.delete('/geocercas',middleware.ensureAuthenticated,validate(validation.geocercas.delete),require('../controlador/geocercas').delete);
+  }
+
+  //:::::::::georutas::::::::::::::
+  {
+    app.get('/georutas',middleware.ensureAuthenticated,require('../controlador/georutas').get);
+    app.post('/georutas',middleware.ensureAuthenticated,validate(validation.geoRutas.post),require('../controlador/georutas').post);
+    app.put('/georutas',middleware.ensureAuthenticated,validate(validation.geoRutas.put),require('../controlador/georutas').update);
+    app.delete('/georutas',middleware.ensureAuthenticated,validate(validation.geoRutas.delete),require('../controlador/georutas').delete);
+  }
+
+  //:::::::::::asignaciones:::::::::::::::::
+  {
+    app.get('/asignaciones',middleware.ensureAuthenticated,require('../controlador/asignaciones').get);
+    app.post('/asignaciones',middleware.ensureAuthenticated,validate(validation.asignaciones.post),require('../controlador/asignaciones').post);
+    app.put('/asignaciones',middleware.ensureAuthenticated,validate(validation.asignaciones.put),require('../controlador/asignaciones').update);
+    app.delete('/asignaciones',middleware.ensureAuthenticated,validate(validation.asignaciones.delete),require('../controlador/asignaciones').delete);
+  }
+
+  //:::::::::::::viajesalumno:::::::::::::::::::
+  {
+    app.get('/viajesalumnos',middleware.ensureAuthenticated,require('../controlador/viajesalumnos').get);
+    app.post('/viajesalumnos',middleware.ensureAuthenticated,require('../controlador/viajesalumnos').post);
   }
 
 }
