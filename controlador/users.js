@@ -25,16 +25,17 @@ exports.crear= function (req,res) {
 
   var usuario = req.body.usuario;
   var pass = servicio.encriptar(req.body.clave);
-  var FK_RolId = req.body.rol;
+  var FK_RolId = (req.body.rol || 2);
   var fechaCaducidad = moment().add(1,'months').format();
-
+  var Activo= 1;
   data =
   {
     PK_UsuarioId:0,
     usuario:usuario,
     pass:pass,
     FK_RolId:FK_RolId,
-    fechaCaducidad:fechaCaducidad
+    fechaCaducidad:fechaCaducidad,
+    Activo:Activo
   }
 
   userM.crear(data,function(err,row){
@@ -65,6 +66,11 @@ exports.actualizar=function(req,res)
   if(!req.body.fecha)
   {}else{
     data['fechaCaducidad']=req.body.fecha;
+  }
+  if(typeof req.body.activo ==="undefined")
+  {}else
+  {
+    data['Activo']=req.body.activo;
   }
   console.log(data);
 
