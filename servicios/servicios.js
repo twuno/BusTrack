@@ -10,7 +10,8 @@ exports.createToken = function(data) {
         iat: moment().unix(),
         exp: moment().add(12, "hours").unix(),
         emp:data.Rol,
-        sub: data.Usuario,
+        sub: data.usuario,
+       userid:data.id
     };
     return jwt.encode(payload, config.TOKEN_SECRET);
 };
