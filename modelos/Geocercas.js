@@ -4,6 +4,7 @@
 
 
 var pool = require('./Conexion');
+
 var geocercasModel = {};
 
 

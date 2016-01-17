@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment')
 var geocercasM = require('../modelos/Geocercas')
+var mongo= require('../modelos/Mongo')
 
 exports.get=function(req,res)
 {
@@ -15,7 +16,11 @@ exports.get=function(req,res)
       res.sendStatus(500);
     }else
     {
+      mongo.doSomethingWithDatabase(function(data){
+        console.log(data);
+      });
       res.send(data);
+
     }
   })
 }
