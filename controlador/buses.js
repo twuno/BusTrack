@@ -75,10 +75,10 @@ exports.delete = function(req,res)
   busesM.delete(id,function(err,data){
     if(err){
 
-      req.sendStatus(500);
+      res.sendStatus(500);
     }else
     {
-      req.sendStatus(200);
+      res.sendStatus(200);
     }
   });
 }

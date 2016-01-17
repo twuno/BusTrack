@@ -1,9 +1,6 @@
 /**
  * Created by Walter Suazo on 29/11/2015.
  */
-/**
- * Created by Walter Suazo on 29/11/2015.
- */
 var pool = require('./Conexion');
 var busesModel = {};
 
