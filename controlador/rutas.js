@@ -52,7 +52,7 @@ exports.update = function(req,res)
   {
     data['nombre']=req.body.nombre;
   }
-  if (Object.keys(data).length.length<1)
+  if (Object.keys(data).length<1)
   {
     res.sendStatus(200);
   }else

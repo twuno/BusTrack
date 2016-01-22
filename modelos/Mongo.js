@@ -35,7 +35,16 @@ exports.doSomethingWithDatabase = function(callback){
 exports.crear = function(data,callback){
   // this is using the same db connection
   var collection = db.collection('geocercas');
-  collection.insertOne({}).toArray(function(err, docs) {
+  collection.insertOne(
+    {
+      id:data.id,
+      geometry:data.puntos,
+      type:"Feature",
+      properties:{
+        nombre:data.nombre
+      }
+    }
+  ,function(err, docs) {
     // do something
     if(err)
     {

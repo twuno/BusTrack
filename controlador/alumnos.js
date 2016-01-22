@@ -21,7 +21,6 @@ exports.get=function(req,res)
   })
 }
 
-
 exports.post=function(req,res){
   var cuenta= req.body.cuenta;
   var  Nombre = req.body.nombre;

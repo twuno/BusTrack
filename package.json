@@ -2,6 +2,10 @@
   "name": "Bus",
   "version": "0.0.0",
   "private": true,
+  "apidoc":
+  {
+    "title":"Bustrack"
+  },
   "scripts": {
     "start": "node ./bin/www"
   },

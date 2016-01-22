@@ -75,7 +75,8 @@ exports.actualizar=function(req,res)
   console.log(data);
 
   id = req.body.id;
-  if(data.lenght>0){
+  console.log(data.lenght);
+  if(Object.keys(data).length>0){
   userM.update(id,data,function(err,resu){
     if(err)
     {
@@ -83,6 +84,7 @@ exports.actualizar=function(req,res)
       res.sendStatus(500);
     }else
     {
+      console.log(resu)
       res.sendStatus(200);
     }
   });

@@ -23,7 +23,7 @@ exports.init=function(req,res,next)
             }else
             {
                 console.log(data);
-                res.sendStatus(403);
+                res.send({error:"Sin acceso"});
             }
         }
     });
