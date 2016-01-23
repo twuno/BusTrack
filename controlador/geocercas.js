@@ -30,7 +30,6 @@ exports.post=function(req,res){
   var puntos = req.body.puntos;
   data =
   {
-
     Nombre:Nombre,
     Puntos:puntos
   }
@@ -38,10 +37,11 @@ exports.post=function(req,res){
   geocercasM.post(data,function(error,row){
     if(error)
     {console.log(error);
-      res.sendStatus(500);
+      res.send({msg:"no guardo"});
     }else
     {
-      data['id']=row.insertid;
+      data['id']=row.insertId;
+     console.log(data);
       mongo.crear(data,function(err,innfo){
         if(err){
           //aqui borramos el ultimo registro agregado

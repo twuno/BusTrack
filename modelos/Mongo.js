@@ -3,7 +3,7 @@
  */
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var mongoUrl="mongodb://terwalito:Shersept03@ds047355.mongolab.com:47355/bustrack";
+var mongoUrl="mongodb://terwalito2:Shersept03@ds047355.mongolab.com:47355/bustrack";
 var db;
 
 exports.connect = function(callback) {
@@ -35,15 +35,17 @@ exports.doSomethingWithDatabase = function(callback){
 exports.crear = function(data,callback){
   // this is using the same db connection
   var collection = db.collection('geocercas');
-  collection.insertOne(
-    {
-      id:data.id,
-      geometry:data.puntos,
-      type:"Feature",
-      properties:{
-        nombre:data.nombre
-      }
+  var datos = {
+    id: data.id,
+    geometry: data.Puntos,
+    type: "Feature",
+    properties: {
+      nombre: data.Nombre
     }
+  }
+  console.log(datos);
+  collection.insertOne(
+    datos
   ,function(err, docs) {
     // do something
     if(err)

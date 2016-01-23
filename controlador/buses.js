@@ -12,13 +12,14 @@ exports.get=function(req,res)
     if(error)
     {
       console.log(error);
-      res.sendStatus(500);
+      res.send({msg:false});
     }else
     {
-      res.send(data);
+      res.send({msg:true,info:data,count:data.length});
     }
   })
 }
+
 exports.post=function(req,res){
   var  Descripcion = req.body.descripcion;
   var  Device = req.body.device;
@@ -31,10 +32,10 @@ exports.post=function(req,res){
   busesM.post(data,function(error,data){
     if(error)
     {console.log(error);
-      res.sendStatus(500);
+      res.sendStatus({msg:false,error:err.code});
     }else
     {
-      res.sendStatus(200);
+      res.sendStatus({msg:true});
     }
   });
 };
@@ -60,9 +61,9 @@ exports.update = function(req,res)
     {
       if(err)
       {console.log(err);
-        res.sendStatus(500);
+        res.send({msg:false});
       }
-      else{res.sendStatus(200);
+      else{res.send({msg:true});
       }
     });
   }
@@ -74,11 +75,10 @@ exports.delete = function(req,res)
 
   busesM.delete(id,function(err,data){
     if(err){
-
-      res.sendStatus(500);
+      res.send({msg:false, error:err.code});
     }else
     {
-      res.sendStatus(200);
+      res.send({msg:true});
     }
   });
 }
