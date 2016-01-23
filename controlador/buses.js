@@ -32,7 +32,7 @@ exports.post=function(req,res){
   busesM.post(data,function(error,data){
     if(error)
     {console.log(error);
-      res.sendStatus({msg:false,error:err.code});
+      res.sendStatus({msg:false,error:error.code});
     }else
     {
       res.sendStatus({msg:true});
