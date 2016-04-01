@@ -32,10 +32,10 @@ exports.post=function(req,res){
   busesM.post(data,function(error,data){
     if(error)
     {console.log(error);
-      res.sendStatus({msg:false,error:error.code});
+      res.send({msg:false,error:error.code});
     }else
     {
-      res.sendStatus({msg:true});
+      res.send({msg:true});
     }
   });
 };
@@ -61,7 +61,7 @@ exports.update = function(req,res)
     {
       if(err)
       {console.log(err);
-        res.send({msg:false});
+        res.send({msg:false,error:err.code});
       }
       else{res.send({msg:true});
       }

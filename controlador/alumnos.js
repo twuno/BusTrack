@@ -39,10 +39,10 @@ exports.post=function(req,res){
   alumnoM.post(data,function(error,data){
     if(error)
     {console.log(error);
-      res.sendStatus(500);
+      res.send({msg:false});
     }else
     {
-      res.sendStatus(200);
+      res.send({msg:true});
     }
   });
 };

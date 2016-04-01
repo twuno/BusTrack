@@ -44,14 +44,15 @@ exports.post=function(req,res){
      console.log(data);
       mongo.crear(data,function(err,innfo){
         if(err){
-          //aqui borramos el ultimo registro agregado
+          console.log(err);
+
+          res.send({msg:false});
+
         }else{
-          res.sendStatus(200);
+          res.send({msg:true});
         }
         }
       );
-
-      res.send({"status":200,"msg":"esto no deberia pasar"});
     }
   });
 };

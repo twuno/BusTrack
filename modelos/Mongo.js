@@ -43,7 +43,6 @@ exports.crear = function(data,callback){
       nombre: data.Nombre
     }
   }
-  console.log(datos);
   collection.insertOne(
     datos
   ,function(err, docs) {
@@ -51,8 +50,9 @@ exports.crear = function(data,callback){
     if(err)
     {
       console.log(err);
+      callback(err,null);
     }else {
-      callback(docs);
+      callback(null,docs);
     }
   });
 };
